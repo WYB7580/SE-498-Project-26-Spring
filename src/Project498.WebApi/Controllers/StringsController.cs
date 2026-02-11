@@ -1,21 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
+using Project498.WebApi.Services;
 
 namespace Project498.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class StringsController : ControllerBase
+public class StringsController(IStringService stringService) : ControllerBase
 {
     [HttpGet("reverse/{input}")]
     public IActionResult Reverse(string input)
     {
-        if (string.IsNullOrEmpty(input))
-        {
-            return Ok(string.Empty);
-        }
-
-        char[] charArray = input.ToCharArray();
-        Array.Reverse(charArray);
-        return Ok(new string(charArray));
+        return Ok(stringService.Reverse(input));
     }
 }
