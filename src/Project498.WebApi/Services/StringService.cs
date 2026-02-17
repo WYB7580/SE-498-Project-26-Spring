@@ -13,4 +13,16 @@ public class StringService : IStringService
         Array.Reverse(charArray);
         return new string(charArray);
     }
+
+    public string ReverseWords(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return string.Empty;
+        }
+        
+        var words = input.Split(' ');
+        Array.Reverse(words);
+        return string.Join(" ", words);
+    }
 }
